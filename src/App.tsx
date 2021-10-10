@@ -1,44 +1,34 @@
-import React, { useState, FC } from "react";
-import "./App.css";
-import User from "./components/User";
+import React, { useState, FC, useEffect } from 'react';
+import { API, graphqlOperation } from 'aws-amplify';
+import { ListZellerCustomers } from './graphql/queries';
+import './App.css';
+import { Person } from './interfaces/person';
+import Customer from './components/Customer';
 
 const App: FC = () => {
-  const [users, setOption] = useState({
-    selectedOption: "",
-    usersArr: [
-      {
-        firstName: "John",
-        lastName: "Smith",
-        role: "Admin",
-      },
-      {
-        firstName: "Adam",
-        lastName: "Muller",
-        role: "Admin",
-      },
-      {
-        firstName: "Perri",
-        lastName: "Smith",
-        role: "Manager",
-      },
-      {
-        firstName: "Samsung",
-        lastName: "Mobile",
-        role: "Manager",
-      },
-      {
-        firstName: "Apple",
-        lastName: "iPhone",
-        role: "Manager",
-      },
-    ],
+  const [customers, updateCustomer] = useState({
+    selectedOption: '',
+    customerArr: []
   });
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setOption({ ...users, selectedOption: e.currentTarget.value });
+  useEffect(() => {
+    fetchCustomers();
+    // Runs ONCE after initial rendering
+  }, []);
+
+  const fetchCustomers = async () => {
+    try {
+      const customerData: any = await API.graphql(graphqlOperation(ListZellerCustomers));
+      const customerList: any = customerData.data.listZellerCustomers.items;
+      updateCustomer({ ...customers, customerArr: customerList });
+    } catch (err) {
+      console.log('error fetching customers ', err);
+    }
   };
 
-  console.log("options= ", users);
+  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+    updateCustomer({ ...customers, selectedOption: e.currentTarget.value });
+  };
 
   return (
     <div>
@@ -47,28 +37,26 @@ const App: FC = () => {
         type="radio"
         value="admin"
         name="userType"
-        checked={users.selectedOption === "admin"}
+        checked={customers.selectedOption === 'admin'}
         onChange={onChange}
-      />{" "}
+      />{' '}
       Admin
       <input
         type="radio"
         value="manager"
         name="userType"
-        checked={users.selectedOption === "manager"}
+        checked={customers.selectedOption === 'manager'}
         onChange={onChange}
-      />{" "}
+      />{' '}
       Manager
       <h1 className="userType">
-        {users.selectedOption === "admin"
-          ? `${users.selectedOption} Users`
-          : users.selectedOption}
+        {customers.selectedOption === 'admin' ? `${customers.selectedOption} Users` : customers.selectedOption}
       </h1>
-      {users.usersArr
-        .filter((user) => user.role.toLowerCase() === users.selectedOption)
-        .map((user, i) => (
+      {customers.customerArr
+        .filter((customer: Person) => customer.role.toLowerCase() === customers.selectedOption)
+        .map((customer: Person, i: number) => (
           <div key={i}>
-            <User user={user} />
+            <Customer customer={customer} />
           </div>
         ))}
     </div>
