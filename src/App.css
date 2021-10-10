@@ -1,3 +1,4 @@
-.userType {
-  text-transform: capitalize;
+.selected {
+    background-color: #eaf2fa;
+    border-radius: 0.5em;
 }

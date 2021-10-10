@@ -4,10 +4,46 @@ import { ListZellerCustomers } from './graphql/queries';
 import './App.css';
 import { Person } from './interfaces/person';
 import Customer from './components/Customer';
+import styled from 'styled-components';
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-transform: capitalize;
+  font-weight: normal;
+  padding: 1em 0;
+`;
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #999;
+  padding-bottom: 1em;
+`;
+
+const Item = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  width: 100%;
+`;
+
+const RadioButtonLabel = styled.label`
+  cursor: pointer;
+  display: flex;
+  align-items: self-end;
+  width: 100%;
+  padding: 1em;
+`;
+
+const RadioButton = styled.input`
+  width: 1.5em;
+  height: 1.5em;
+  margin-right: 10px;
+`;
 
 const App: FC = () => {
   const [customers, updateCustomer] = useState({
-    selectedOption: '',
+    selectedOption: 'admin',
     customerArr: []
   });
 
@@ -32,33 +68,45 @@ const App: FC = () => {
 
   return (
     <div>
-      <h1>User Types</h1>
-      <input
-        type="radio"
-        value="admin"
-        name="userType"
-        checked={customers.selectedOption === 'admin'}
-        onChange={onChange}
-      />{' '}
-      Admin
-      <input
-        type="radio"
-        value="manager"
-        name="userType"
-        checked={customers.selectedOption === 'manager'}
-        onChange={onChange}
-      />{' '}
-      Manager
-      <h1 className="userType">
-        {customers.selectedOption === 'admin' ? `${customers.selectedOption} Users` : customers.selectedOption}
-      </h1>
-      {customers.customerArr
-        .filter((customer: Person) => customer.role.toLowerCase() === customers.selectedOption)
-        .map((customer: Person, i: number) => (
-          <div key={i}>
-            <Customer customer={customer} />
-          </div>
-        ))}
+      <Title>User Types</Title>
+      <Wrapper>
+        <Item className={customers.selectedOption === 'admin' ? 'selected' : ''}>
+          <RadioButtonLabel>
+            <RadioButton
+              type="radio"
+              value="admin"
+              name="userType"
+              checked={customers.selectedOption === 'admin'}
+              onChange={onChange}
+            />
+            Admin
+          </RadioButtonLabel>
+        </Item>
+        <Item className={customers.selectedOption === 'manager' ? 'selected' : ''}>
+          <RadioButtonLabel>
+            <RadioButton
+              type="radio"
+              value="manager"
+              name="userType"
+              checked={customers.selectedOption === 'manager'}
+              onChange={onChange}
+            />
+            Manager
+          </RadioButtonLabel>
+        </Item>
+      </Wrapper>
+      <Wrapper>
+        <Title>
+          {customers.selectedOption === 'admin' ? `${customers.selectedOption} Users` : customers.selectedOption}
+        </Title>
+        {customers.customerArr
+          .filter((customer: Person) => customer.role.toLowerCase() === customers.selectedOption)
+          .map((customer: Person, i: number) => (
+            <div key={i}>
+              <Customer customer={customer} />
+            </div>
+          ))}
+      </Wrapper>
     </div>
   );
 };
