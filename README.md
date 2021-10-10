@@ -25,5 +25,5 @@ Your app is ready to be deployed!
 
 ## Approach
  * Uses functional components, React hooks to set state and fetch data, styled components to use component-level styles
- * Main App fetches data with Effect hook, updates the state with State hook based on the radio button selection, passed the data to the component 'Customer' to display to display the name and role of the customer
+ * Main App fetches data with Effect hook, updates the state with State hook based on the radio button selection, passed the data to the component 'Customer' to display the name and role of the customer
  * Created a component 'Customer' to display the name and role of the customer
