@@ -57,7 +57,6 @@ const App: FC = () => {
       const customerData: any = await API.graphql(graphqlOperation(ListZellerCustomers));
       const customerList: any = customerData.data.listZellerCustomers.items;
       updateCustomer({ ...customers, customerArr: customerList });
-      console.log('here= ', customerData);
     } catch (err) {
       console.log('error fetching customers ', err);
     }

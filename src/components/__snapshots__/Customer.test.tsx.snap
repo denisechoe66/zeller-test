@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Customer /> should render Customer 1`] = `
+<div
+  className="sc-bdfBQB ifOoGt"
+>
+  <p
+    className="sc-dlfnuX csvATz"
+  >
+    D
+  </p>
+  <div
+    className="sc-gsTEea iAvDKs"
+  >
+    <p
+      className="sc-hKgJUU ddhPps"
+    >
+      David Miller
+    </p>
+    <p
+      className="sc-eCstlR kRXOWZ"
+    >
+      admin
+    </p>
+  </div>
+</div>
+`;
