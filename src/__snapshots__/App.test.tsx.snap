@@ -2,57 +2,56 @@
 
 exports[`<App /> should render App 1`] = `
 <div>
-  <h1
-    className="sc-jSgvzq iYBlmY"
-  >
-    User Types
-  </h1>
-  <div
-    className="sc-gKseQn brWlTu"
-  >
-    <div
-      className="sc-iBPTik VnMyT selected"
-    >
-      <label
-        className="sc-fubCzh fCCgmW"
-      >
-        <input
-          checked={true}
-          className="sc-pGacB dIScII"
-          name="userType"
-          onChange={[Function]}
-          type="radio"
-          value="admin"
-        />
-        Admin
-      </label>
-    </div>
-    <div
-      className="sc-iBPTik VnMyT"
-    >
-      <label
-        className="sc-fubCzh fCCgmW"
-      >
-        <input
-          checked={false}
-          className="sc-pGacB dIScII"
-          name="userType"
-          onChange={[Function]}
-          type="radio"
-          value="manager"
-        />
-        Manager
-      </label>
-    </div>
-  </div>
-  <div
-    className="sc-gKseQn brWlTu"
-  >
+  <div>
     <h1
-      className="sc-jSgvzq iYBlmY"
+      class="sc-jSgvzq iYBlmY"
     >
-      admin Users
+      User Types
     </h1>
+    <div
+      class="sc-gKseQn brWlTu"
+    >
+      <div
+        class="sc-iBPTik VnMyT selected"
+      >
+        <label
+          class="sc-fubCzh fCCgmW"
+        >
+          <input
+            checked=""
+            class="sc-pGacB dIScII"
+            name="userType"
+            type="radio"
+            value="admin"
+          />
+          Admin
+        </label>
+      </div>
+      <div
+        class="sc-iBPTik VnMyT"
+      >
+        <label
+          class="sc-fubCzh fCCgmW"
+        >
+          <input
+            class="sc-pGacB dIScII"
+            name="userType"
+            type="radio"
+            value="manager"
+          />
+          Manager
+        </label>
+      </div>
+    </div>
+    <div
+      class="sc-gKseQn brWlTu"
+    >
+      <h1
+        class="sc-jSgvzq iYBlmY"
+      >
+        admin Users
+      </h1>
+    </div>
   </div>
 </div>
 `;
